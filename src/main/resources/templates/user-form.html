@@ -23,7 +23,7 @@
     <input type="password" th:field="*{password}" required/><br/>
 
     <label>Роли:</label>
-    <select name="rolesNames" multiple size="2">
+    <select name="roleNames" multiple size="2">
         <option th:each="role : ${allRoles}"
                 th:value="${role.roleName}"
                 th:text="${role.roleName}">
