@@ -27,9 +27,6 @@ public class User implements UserDetails {
 
     private String password;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -82,14 +79,18 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().map(role -> (GrantedAuthority) role).collect(Collectors.toSet());
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return "";
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream().map(role -> (GrantedAuthority) role).collect(Collectors.toSet());
     }
 
     @Override
